@@ -6,6 +6,8 @@ from django.contrib.auth.models import User
 class Director(models.Model):
     name = models.TextField()
 
+    def __str__(self):
+        return self.name
 
 class Cast(models.Model):
     name = models.TextField()
@@ -25,7 +27,7 @@ class Movie(models.Model):
     duration = models.IntegerField()
     director = models.ForeignKey(Director, on_delete=models.CASCADE)
     rating = models.IntegerField()
-    cast = models.ManyToManyField(Cast)
+    cast = models.ManyToManyField(Cast, blank=True)
 
     def __str__(self):
         return self.name
